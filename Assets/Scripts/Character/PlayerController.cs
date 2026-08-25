@@ -15,16 +15,19 @@ public class PlayerController : MonoBehaviour
     }
     playerState currentState;
     public float Speed; //velocidad de movimiento.
-    public float SpeedRot; //velocidad de rotado.
+
+    public float RotSpeed;
     public float SprintSpeed; //velocidad de movimiento cuando corre.
     public ParticleSystem EfectoCorrer;
 
-    
+    private void Awake() 
+    {
+        animator = GetComponentInChildren<Animator>();
+        controller = GetComponent<CharacterController>();
+    }
     void Start()
     {
         currentState = playerState.Idle;
-        animator = GetComponentInChildren<Animator>();
-        controller = GetComponent<CharacterController>();
         Cursor.lockState = CursorLockMode.Locked; // Desaparece el cursor de la pantalla para asegurar un uso más cómodo
     }
 
@@ -33,14 +36,15 @@ public class PlayerController : MonoBehaviour
     {
         Callinputs();
         MovePlayer();
-  
     }
+
+
 
     // Llama esta funcion para agregarle los inputs predeterminados de unity a las variables
     void Callinputs()
     {
-        movX = Input.GetAxis("Horizontal");
-        movZ = Input.GetAxis("Vertical");
+        movX = Input.GetAxisRaw("Horizontal");
+        movZ = Input.GetAxisRaw("Vertical");
     }
 
     //realiza el movimiento del jugador segun el estado en el que este.
@@ -103,9 +107,22 @@ public class PlayerController : MonoBehaviour
 
     // Aplica el movimiento segun el tipo de estado deljugador
     void ApplyMove(float playerSpeed)
-    {
-            transform.Rotate(0 ,movX * SpeedRot, 0);
-            movement = transform.forward * movZ;
-            controller.SimpleMove(movement * playerSpeed);
+    {            
+        movement = new Vector3(movX,0,movZ).normalized;
+
+        //movement.Normalize();
+
+        if(movement.sqrMagnitude > 0.01f)
+        {
+            Quaternion targetRotation = Quaternion.LookRotation(-movement, Vector3.up);
+            transform.rotation = Quaternion.Slerp(transform.rotation,targetRotation,RotSpeed * Time.deltaTime);
+        }
+            
+
+        Vector3 movexz = movement * (playerSpeed * Time.deltaTime); 
+
+
+        controller.Move(movexz);
+        
     }
 }
