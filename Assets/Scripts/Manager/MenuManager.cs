@@ -25,11 +25,13 @@ public class MenuManager : MonoBehaviour
         bool _Input = Input.anyKey;
         
         //al identificar el boton pasa para salir del titulo
-        if(_Input == true)
+        if(_Input == true && _menuState == MenuState.titulo)
             ChangeMenuState(1);
             Debug.Log("Pasa Al Menu :"+ _Input);
         
+
         ChangeBetwenMenus();
+        
     }
 
 

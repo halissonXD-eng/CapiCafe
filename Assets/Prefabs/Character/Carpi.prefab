@@ -5327,7 +5327,6 @@ GameObject:
   m_Component:
   - component: {fileID: 8718080570737613118}
   - component: {fileID: 1120391141928694990}
-  - component: {fileID: 2739657196539268963}
   m_Layer: 0
   m_Name: Body
   m_TagString: Untagged
@@ -5374,19 +5373,6 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &2739657196539268963
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4314531090179013733}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b26f3d9b6551b774ab5a87b61f640a42, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _audioClip: {fileID: 8300000, guid: 240fdef7f42bf054c936daf8823c1e21, type: 3}
 --- !u!1 &4579383326550136692
 GameObject:
   m_ObjectHideFlags: 0
@@ -5591,7 +5577,7 @@ GameObject:
   - component: {fileID: 1209159987503738507}
   m_Layer: 0
   m_Name: Carpi
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5652,10 +5638,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   movX: 0
   movZ: 0
-  Speed: 2
+  Speed: 5
   RotSpeed: 5
   SprintSpeed: 2
-  EfectoCorrer: {fileID: 0}
+  EfectoCorrer: {fileID: 7043410992950519227}
 --- !u!1 &7690942133594523083
 GameObject:
   m_ObjectHideFlags: 0
