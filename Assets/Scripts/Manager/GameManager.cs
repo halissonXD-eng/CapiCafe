@@ -23,4 +23,16 @@ public class GameManager : MonoBehaviour
     {
         SceneManager.LoadScene(Escena);
     }
+
+    //este srive para cuando se carga la escena el tiempo vuelva a la velocidad normal
+    public void CambioEscenaTiempo(int Escena)
+    {
+        Time.timeScale = 1f;
+        SceneManager.LoadScene(Escena);
+    }
+
+    public void ExitGame()
+    {
+        Application.Quit();
+    }
 }

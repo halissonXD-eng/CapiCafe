@@ -9,7 +9,7 @@ public class AudioManager : MonoBehaviour
     [SerializeField] AudioSource GeneralMusicMixer;
     [SerializeField] AudioSource GeneralSFXMixer;
 
-    // esto es para que se quede argando entre escenas
+    // esto es para que se quede cargando entre escenas
     void Awake()
     {
         if(instance == null)
