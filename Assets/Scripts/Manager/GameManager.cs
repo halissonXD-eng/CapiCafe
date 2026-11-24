@@ -1,10 +1,13 @@
 using UnityEngine.SceneManagement;
 using UnityEngine;
+using System.Collections;
 
 public class GameManager : MonoBehaviour
 {
 
     public static GameManager instance;
+
+    public Fader _fader;
 
     private void Awake() 
     {
@@ -18,6 +21,10 @@ public class GameManager : MonoBehaviour
         }
         DontDestroyOnLoad(this);
     }
+    void Start()
+    {
+        _fader = GameObject.Find("Fade").GetComponent<Fader>();
+    }
 
     public void CambioEscena(int Escena)
     {
@@ -30,6 +37,18 @@ public class GameManager : MonoBehaviour
         Time.timeScale = 1f;
         SceneManager.LoadScene(Escena);
     }
+
+    public void CambiarEscenaConFade(int escena)
+    {
+        StartCoroutine(CambioFade(escena));
+    }
+
+    public IEnumerator CambioFade(int Escena)
+    {
+        _fader.FadeIn(0.8f);
+        yield return new WaitForSeconds(1f);
+        SceneManager.LoadScene(Escena);
+    } 
 
     public void ExitGame()
     {
